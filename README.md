@@ -16,12 +16,15 @@
 
 ### ターゲットユーザ
 - ルーティンのある業務に従事する方
-- 紙での日報管理にうんざりしている方
+- 業務上の紙での日報管理を廃止し用途検討している会社の責任者
 
 ### 主な利用シーン
 - 日常的な業務の中で、ルーティンになっている仕事を管理する時
 - 引継ぎ事項の伝達の時
 - 過去の日報を管理、整理する時
+
+## 実装機能リスト
+https://docs.google.com/spreadsheets/d/1WvFTd5NY1EWC7z0dTyO8IFY7xIiX6RMpGh5135rV-i4/edit?usp=sharing
 
 ## 設計書
 <!--テーマを設定・提出する時点では不要です-->
@@ -33,7 +36,7 @@
 - JSライブラリ：jQuery
 - IDE：Cloud9
 -
-## 実装機能リスト
-https://docs.google.com/spreadsheets/d/1WvFTd5NY1EWC7z0dTyO8IFY7xIiX6RMpGh5135rV-i4/edit?usp=sharing
+
 
 ## 使用素材
+使用検討中
