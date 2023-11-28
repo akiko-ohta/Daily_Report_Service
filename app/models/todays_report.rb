@@ -1,0 +1,2 @@
+class TodaysReport < ApplicationRecord
+end
