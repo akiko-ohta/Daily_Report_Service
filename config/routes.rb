@@ -1,31 +1,16 @@
 Rails.application.routes.draw do
 
-  namespace :employee do
-    get 'tasks/new'
-    get 'tasks/create'
-    get 'tasks/edit'
-    get 'tasks/update'
+  scope module: :employee do
+    resources :report_serach, only: [:show]
+    resources :tasks, only: [:new, :create, :index, :edit, :update]
+    resources :daily_reports, only: [:new, :create, :index, :show]
+    resources :todays_reports, only: [:new, :create, :edit, :update]
+    delete "todays_reports/destroy_all" => "todays_reports#destroy_all"
   end
-  namespace :employee do
-    get 'daily_reports/new'
-    get 'daily_reports/index'
-    get 'daily_reports/show'
-  end
-  namespace :employee do
-    get 'todays_reports/new'
-    get 'todays_reports/edit'
-    get 'todays_reports/update'
-    get 'todays_reports/all_delete'
-  end
-  get 'department/new'
-  get 'department/index'
-  get 'department/edit'
-  get 'department/update'
-  namespace :employer do
-    get 'employees/index'
-    get 'employees/show'
-    get 'employees/edit'
-    get 'employees/update'
+
+  scope module: :employer do
+    resources :departments, only: [:new, :index, :edit, :update]
+    resources :employees, only: [:index, :edit, :update]
   end
   root to: "homes#top"
 

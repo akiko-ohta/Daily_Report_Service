@@ -10,7 +10,67 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
+  <body class="d-flex flex-column">
+    <header class="shadow-sm mb-5">
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+          <a class="navbar-brand" href="/">Daily Report Service</a>
+          <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+              <% if employer_signed_in? %>
+                <li class="nav-item" style="margin-right: 10px;">
+                  <%= link_to departments_path, class: 'text-decoration-none text-dark btn-default' do %>
+                    <span>部署一覧</span>
+                  <% end %>
+                </li>
+                <li class="nav-item" style="margin-right: 10px;">
+                  <%= link_to employees_path, class: 'text-decoration-none text-dark btn-default' do %>
+                    <span>従業員一覧</span>
+                  <% end %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to destroy_employer_session_path, method: :delete, class: 'text-decoration-none text-dark btn-default' do%>
+                    <span>ログアウト</span>
+                  <% end %>
+                </li>
+
+              <% elsif employee_signed_in? %>
+                <li class="nav-item" style="margin-right: 10px;">
+                  <%= link_to daily_reports_path, class: 'text-decoration-none text-dark btn-default' do %>
+                    <span>日報一覧</span>
+                  <% end %>
+                </li>
+                <li class="nav-item" style="margin-right: 10px;">
+                  <%= link_to report_serach_path, class: 'text-decoration-none text-dark btn-default' do %>
+                    <span>日報検索</span>
+                  <% end %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to destroy_employee_session_path, method: :delete, class: 'text-decoration-none text-dark btn-default' do%>
+                    <span>ログアウト</span>
+                  <% end %>
+                </li>
+
+              <% else %>
+                <li class="nav-item" style="margin-right: 10px;">
+                  <%= link_to new_employer_registration_path, class: 'text-decoration-none text-dark btn-default' do %>
+                    <span>新規登録</span>
+                  <% end %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to new_employer_session_path, class: 'text-decoration-none text-dark btn-default' do %>
+                    <span>ログイン</span>
+                  <% end %>
+                </li>
+              <% end %>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
     <%= yield %>
   </body>
 </html>
