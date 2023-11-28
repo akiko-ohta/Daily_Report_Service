@@ -1,0 +1,2 @@
+module Employee::DailyReportsHelper
+end
