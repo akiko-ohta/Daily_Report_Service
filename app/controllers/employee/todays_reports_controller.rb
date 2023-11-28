@@ -11,6 +11,6 @@ class Employee::TodaysReportsController < ApplicationController
   def update
   end
 
-  def all_delete
+  def destroy_all
   end
 end
