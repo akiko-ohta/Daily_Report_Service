@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   end
 
   scope module: :employer do
-    resources :departments, only: [:new, :index, :edit, :update]
+    resources :departments, only: [:new, :create, :index, :edit, :update]
     resources :employees, only: [:index, :edit, :update]
   end
   root to: "homes#top"

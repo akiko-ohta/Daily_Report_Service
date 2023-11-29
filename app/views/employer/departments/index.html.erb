@@ -1,0 +1,14 @@
+<h3>部署一覧</h3>
+  <%= form_with model: @department, url: '/departmants',method: :post do |f| %>
+    <%= f.text_field :name %>
+    <%= f.submit '新規部署登録' %>
+  <% end %>
+
+  <%= @departments.each do |department| %>
+    <%= link_to employees_path, class: 'text_dark btn-default' do %>
+      <%= department.name %>
+    <% end %>
+    <%= link_to edit_department_path, class: 'btn-success' do %>
+      <span>編集</span>
+    <% end %>
+  <% end %>
