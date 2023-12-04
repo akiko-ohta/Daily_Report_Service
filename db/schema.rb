@@ -15,20 +15,23 @@ ActiveRecord::Schema.define(version: 2023_11_28_053739) do
   create_table "daily_reports", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "todays_report_id", null: false
   end
 
   create_table "departments", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "employer_id", null: false
     t.string "name", null: false
   end
 
   create_table "employees", force: :cascade do |t|
-    t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
+    t.integer "employer_id", null: false
+    t.integer "department_id", null: false
     t.integer "user_code", null: false
     t.string "last_name", null: false
     t.string "first_name", null: false
@@ -37,7 +40,7 @@ ActiveRecord::Schema.define(version: 2023_11_28_053739) do
     t.boolean "is_active", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["email"], name: "index_employees_on_email", unique: true
+    t.index "\"email\"", name: "index_employees_on_email", unique: true
     t.index ["reset_password_token"], name: "index_employees_on_reset_password_token", unique: true
   end
 
@@ -65,6 +68,8 @@ ActiveRecord::Schema.define(version: 2023_11_28_053739) do
   create_table "todays_reports", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "department_id", null: false
+    t.integer "task_id", null: false
     t.string "practitioner"
     t.text "handover"
   end
