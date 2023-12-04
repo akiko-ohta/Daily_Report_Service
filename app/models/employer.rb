@@ -5,6 +5,7 @@ class Employer < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :department, dependent: :destroy
+  has_many :employee, dependent: :destroy
 
   validates :name, presence: true
 

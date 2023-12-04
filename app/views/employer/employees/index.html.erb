@@ -1,2 +1,11 @@
-<h1>Employer::Employees#index</h1>
-<p>Find me in app/views/employer/employees/index.html.erb</p>
+<h3>従業員一覧</h3>
+  <%= link_to new_employee_registration_path, class: 'btn-success' do %>
+    <span>新規従業員登録</span>
+  <% end %>
+　<% @employees.each do |employee| %>
+      <%= employee.last_name %>
+      <%= employee.first_name %>
+    <%= link_to edit_employee_path(employee.id), class: 'btn-success' do %>
+      <span>編集</span>
+    <% end %>
+  <% end %>

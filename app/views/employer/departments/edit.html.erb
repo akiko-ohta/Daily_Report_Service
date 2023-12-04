@@ -1,2 +1,5 @@
-<h1>Department#edit</h1>
-<p>Find me in app/views/department/edit.html.erb</p>
+<h3>部署一覧</h3>
+  <%= form_with model: [:admin, @department], url: department_path(@department.id), method: :patch do |f| %>
+    <%= f.text_field :name %>
+    <%= f.submit '編集を保存' %>
+  <% end %>

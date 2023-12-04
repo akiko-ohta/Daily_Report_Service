@@ -1,5 +1,6 @@
 class Employer::EmployeesController < ApplicationController
   def index
+    @employees = current_employer.employee.all
   end
 
   def show

@@ -3,6 +3,7 @@ class Employee < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
+  belongs_to :employer
   belongs_to :department
 
   validates :user_code, presence: true
@@ -11,4 +12,6 @@ class Employee < ApplicationRecord
   validates :last_name_kana, presence: true
   validates :first_name_kana, presence: true
   validates :is_active, presence: true
+
+  attr_accessor :login
 end
