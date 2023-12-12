@@ -1,5 +1,5 @@
 <h3>部署一覧</h3>
-  <%= form_with model: [:emloyer ,@department], url: '/departments', method: :post do |f| %>
+  <%= form_with model: [:employer ,@department], url: '/departments', method: :post do |f| %>
     <%= f.text_field :name %>
     <%= f.hidden_field :employer_id, :value => current_employer.id %>
     <%= f.submit '新規部署登録' %>
@@ -8,7 +8,7 @@
     <%= link_to employees_path, class: 'text_dark btn-default' do %>
       <%= department.name %>
     <% end %>
-    <%= link_to edit_department_path, class: 'btn-success' do %>
+    <%= link_to edit_department_path(department.id), class: 'btn-success' do %>
       <span>編集</span>
     <% end %>
   <% end %>

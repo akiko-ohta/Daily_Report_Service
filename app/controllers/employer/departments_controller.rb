@@ -14,15 +14,23 @@ class Employer::DepartmentsController < ApplicationController
   end
 
   def edit
+    @department = Department.find(params[:id])
   end
 
   def update
+    department = Department.find(params[:id])
+    if department.update(department_params)
+       redirect_to departments_path
+    else
+      @department = Department.find(params[:id])
+      render :edit
+    end
   end
 
   private
 
-  def genre_params
-    params.require(:genre).permit(:name)
+  def department_params
+    params.require(:department).permit(:name, :employer_id)
   end
 
 end
