@@ -5,7 +5,8 @@ class CreateTasks < ActiveRecord::Migration[6.1]
       t.timestamps
       t.string :name, null: false
       t.time :excution_time, null: false
-      t.boolean :is_active, null: false
+      t.boolean :is_active, default: true
+      t.integer :department_id, null: false
     end
   end
 end

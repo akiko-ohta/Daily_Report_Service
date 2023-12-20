@@ -1,9 +1,8 @@
 <h2>Log in</h2>
 
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :login %>
-    <%= f.text_field :login, autofocus: true %>
+<%= form_with model: @employee,url: employee_session_path do |f| %>
+  <div class="input-group-prepend">
+    <%= f.text_field :user_code, autofocus: true, class: "form-control", placeholder: "ユーザーコード" %>
   </div>
 
   <div class="field">
