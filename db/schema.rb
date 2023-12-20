@@ -37,11 +37,11 @@ ActiveRecord::Schema.define(version: 2023_11_28_053739) do
     t.string "first_name", null: false
     t.string "last_name_kana", null: false
     t.string "first_name_kana", null: false
-    t.boolean "is_active", null: false
+    t.boolean "is_active", default: true
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index "\"email\"", name: "index_employees_on_email", unique: true
     t.index ["reset_password_token"], name: "index_employees_on_reset_password_token", unique: true
+    t.index ["user_code"], name: "index_employees_on_user_code", unique: true
   end
 
   create_table "employers", force: :cascade do |t|
@@ -62,7 +62,8 @@ ActiveRecord::Schema.define(version: 2023_11_28_053739) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "name", null: false
     t.time "excution_time", null: false
-    t.boolean "is_active", null: false
+    t.boolean "is_active", default: true
+    t.integer "department_id", null: false
   end
 
   create_table "todays_reports", force: :cascade do |t|

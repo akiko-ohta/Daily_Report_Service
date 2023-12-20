@@ -10,7 +10,7 @@ class Employer::DepartmentsController < ApplicationController
 
   def index
     @department = Department.new
-    @departments= Department.all
+    @departments = current_employer.department.all
   end
 
   def edit

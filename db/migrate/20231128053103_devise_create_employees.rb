@@ -19,7 +19,7 @@ class DeviseCreateEmployees < ActiveRecord::Migration[6.1]
       t.string :first_name, null: false
       t.string :last_name_kana, null: false
       t.string :first_name_kana, null: false
-      t.boolean :is_active, null: false
+      t.boolean :is_active, default: true
 
       ## Trackable
       # t.integer  :sign_in_count, default: 0, null: false
@@ -38,13 +38,10 @@ class DeviseCreateEmployees < ActiveRecord::Migration[6.1]
       # t.integer  :failed_attempts, default: 0, null: false # Only if lock strategy is :failed_attempts
       # t.string   :unlock_token # Only if unlock strategy is :email or :both
       # t.datetime :locked_at
-      attr_accessor :login
-
 
       t.timestamps null: false
     end
-
-    add_index :employees, :email,                unique: true
+    add_index :employees, :user_code, unique: true
     add_index :employees, :reset_password_token, unique: true
     # add_index :employees, :confirmation_token,   unique: true
     # add_index :employees, :unlock_token,         unique: true
