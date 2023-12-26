@@ -9,7 +9,7 @@ scope module: :employer do
     get "report_serach" => "report_serach#index"
     resources :tasks, only: [:new, :create, :index, :edit, :update]
     resources :daily_reports, only: [:new, :create, :index, :show]
-    resources :todays_reports, only: [:new, :create, :edit, :update]
+    resources :todays_reports, only: [:index, :create, :update]
     delete "todays_reports/destroy_all" => "todays_reports#destroy_all"
   end
 
