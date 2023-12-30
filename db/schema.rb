@@ -15,13 +15,15 @@ ActiveRecord::Schema.define(version: 2023_11_28_053739) do
   create_table "daily_reports", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "todays_report_id", null: false
+    t.integer "department_id", null: false
+    t.integer "employee_id", null: false
+    t.integer "task_id", null: false
+    t.text "handover"
   end
 
   create_table "departments", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "employer_id", null: false
     t.string "name", null: false
   end
 
@@ -30,7 +32,6 @@ ActiveRecord::Schema.define(version: 2023_11_28_053739) do
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer "employer_id", null: false
     t.integer "department_id", null: false
     t.integer "user_code", null: false
     t.string "last_name", null: false
@@ -50,7 +51,6 @@ ActiveRecord::Schema.define(version: 2023_11_28_053739) do
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.string "name", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["email"], name: "index_employers_on_email", unique: true
@@ -61,7 +61,7 @@ ActiveRecord::Schema.define(version: 2023_11_28_053739) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "name", null: false
-    t.time "excution_time", null: false
+    t.time "execution_time", null: false
     t.boolean "is_active", default: true
     t.integer "department_id", null: false
   end
@@ -72,7 +72,6 @@ ActiveRecord::Schema.define(version: 2023_11_28_053739) do
     t.integer "department_id", null: false
     t.integer "task_id", null: false
     t.string "practitioner"
-    t.text "handover"
   end
 
 end

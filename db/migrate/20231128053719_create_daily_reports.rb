@@ -3,7 +3,10 @@ class CreateDailyReports < ActiveRecord::Migration[6.1]
     create_table :daily_reports do |t|
 
       t.timestamps
-      t.integer :todays_report_id, null: false
+      t.integer :department_id, null: false
+      t.integer :employee_id, null: false
+      t.integer :task_id, null: false
+      t.text :handover
     end
   end
 end

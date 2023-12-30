@@ -10,7 +10,7 @@ class Employer::DepartmentsController < ApplicationController
 
   def index
     @department = Department.new
-    @departments = current_employer.department.all
+    @departments = Department.all
   end
 
   def edit
@@ -30,7 +30,7 @@ class Employer::DepartmentsController < ApplicationController
   private
 
   def department_params
-    params.require(:department).permit(:name, :employer_id)
+    params.require(:department).permit(:name)
   end
 
 end

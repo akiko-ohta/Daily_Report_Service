@@ -1,15 +1,11 @@
 <%= form_with(model: @todays_report, url: todays_reports_path, method: :post) do |f| %>
-  <% @tasks.each do |task| %>
-    <%= f.hidden_field :task_id, value: task.id %>
-  <% end %>
   <%= f.hidden_field :department_id, value: current_employee.department.id %>
   <%= f.submit '新規日報作成' %>
 <% end %>
 
 <% if @todays_reports.present? %>
   <% @todays_reports.each do |todays_report| %>
-    <li><%= todays_report.task.excution_time %></li>
+    <li><%= todays_report.task.execution_time %></li>
     <li><%= todays_report.task.name %></li>
-    <!-- 他の業務の情報を表示 -->
   <% end %>
 <% end %>

@@ -68,6 +68,6 @@ class Employee::RegistrationsController < Devise::RegistrationsController
   protected
 
   def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:user_code, :last_name, :first_name, :last_name_kana, :first_name_kana, :department_id, :employer_id])
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:user_code, :last_name, :first_name, :last_name_kana, :first_name_kana, :department_id])
   end
 end

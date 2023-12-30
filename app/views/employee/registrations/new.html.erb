@@ -30,7 +30,7 @@
     </div>
   </div>
   <div>
-    <%= f.select :department_id, options_from_collection_for_select(current_employer.department.all, :id, :name) %>
+    <%= f.select :department_id, options_from_collection_for_select(Department.all, :id, :name) %>
   </div>
   <div class="field">
     <%= f.label :password %>
@@ -44,9 +44,6 @@
     <%= f.label :password_confirmation %><br />
     <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
   </div>
-
-  <%= f.hidden_field :employer_id, :value => current_employer.id %>
-
   <div class="actions">
     <%= f.submit "新規登録" %>
   </div>

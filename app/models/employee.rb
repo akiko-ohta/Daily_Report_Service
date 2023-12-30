@@ -4,10 +4,11 @@ class Employee < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
          :authentication_keys => [:user_code]
-  belongs_to :employer
   belongs_to :department
+  has_many :dayly_reports, dependent: :destroy
 
   validates :user_code, presence: true, uniqueness: true
+  validates :department_id, presence: true
   validates :last_name, presence: true
   validates :first_name, presence: true
   validates :last_name_kana, presence: true
