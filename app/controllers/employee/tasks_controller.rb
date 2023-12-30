@@ -34,6 +34,6 @@ class Employee::TasksController < ApplicationController
   private
 
   def task_params
-    params.require(:task).permit(:name, :excution_time, :is_active, :department_id)
+    params.require(:task).permit(:name, :execution_time, :is_active, :department_id)
   end
 end

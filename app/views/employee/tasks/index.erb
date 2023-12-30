@@ -3,7 +3,7 @@
       <span>新規業務登録</span>
     <% end %>
   <% @tasks.each do |task| %>
-    <%= task.excution_time %>
+    <%= task.execution_time %>
     <%= task.name %>
     <% if task.is_active == "有効" %>
       <span class="text-success"><strong><%= task.is_active %></strong></span>

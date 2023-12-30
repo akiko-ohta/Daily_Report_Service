@@ -6,7 +6,6 @@ class CreateTodaysReports < ActiveRecord::Migration[6.1]
       t.integer :department_id, null: false
       t.integer :task_id, null: false
       t.string :practitioner
-      t.text :handover
     end
   end
 end
