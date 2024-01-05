@@ -15,6 +15,7 @@
       <%= f.time_select :execution_time,  class: "form-control" %>
     </div>
   </div>
+  <%= f.hidden_field :department_id, :value => current_employee.department.id %>
   <div class="row">
     <div class="col-3"></div>
     <div class="col-4 text-center">
