@@ -10,6 +10,9 @@ scope module: :employer do
     resources :tasks, only: [:new, :create, :index, :edit, :update]
     resources :daily_reports, only: [:new, :create, :index, :show]
     resources :todays_reports, only: [:index, :create, :update]
+    post "create_handover" => "todays_reports#create_handover"
+    patch "update_handover" => "todays_reports#update_handover"
+    post "create_daily_report" => "todays_reports#create_daily_report"
     delete "todays_reports/destroy_all" => "todays_reports#destroy_all"
   end
 
