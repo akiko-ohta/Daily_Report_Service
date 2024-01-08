@@ -1,0 +1,2 @@
+class Handover < ApplicationRecord
+end
