@@ -8,8 +8,9 @@ scope module: :employer do
   scope module: :employee do
     get "report_serach" => "report_serach#index"
     resources :tasks, only: [:new, :create, :index, :edit, :update]
-    resources :daily_reports, only: [:new, :create, :index, :show]
+    resources :daily_reports, only: [:new, :create]
     resources :todays_reports, only: [:index, :create, :update]
+    resources :handover, only: [:update, :index, :show]
     post "create_handover" => "todays_reports#create_handover"
     patch "update_handover" => "todays_reports#update_handover"
     post "create_daily_report" => "todays_reports#create_daily_report"
