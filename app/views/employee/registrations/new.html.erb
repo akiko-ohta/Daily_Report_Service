@@ -1,50 +1,64 @@
-<h2>従業員新規登録</h2>
-
-<%= form_with model: @employee, url: employee_registration_path, id: "new_employee", class: "new_employee" do |f| %>
+<div class="container">
+  <div class="row">
+    <h4>従業員新規登録</h4>
+  </div>
+  <%= form_with model: @employee, url: employee_registration_path, id: "new_employee", class: "new_employee" do |f| %>
   <%= render "employee/shared/error_messages", resource: resource %>
-
-  <div class="form-group row">
-    <label class="col-3 col-form-label">ユーザーコード</label>
-    <div class="col">
-      <%= f.text_field :user_code, class: "form-control" %>
+    <div class="form-group row">
+      <label class="col-3 col-form-label">ユーザーコード</label>
+      <div class="col-3">
+        <%= f.text_field :user_code, class: "form-control" %>
+      </div>
     </div>
-    <label class="col-3 col-form-label">名前</label>
-    <label>(姓)</label>
-    <div class="col">
+    <div class="form-group row">
+      <label class="col-3 col-form-label">名前</label>
+      <label>(姓)</label>
+      <div class="col">
         <%= f.text_field :last_name, placeholder: "令和", class: "form-control" %>
-    </div>
-    <label>(名)</label>
-    <div class="col">
+      </div>
+      <label>(名)</label>
+      <div class="col">
         <%= f.text_field :first_name, placeholder: "道子", class: "form-control" %>
+      </div>
     </div>
-  </div>
-  <div class="form-group row">
-    <label class="col-3 col-form-label">フリガナ</label>
-    <label>(セイ)</label>
-    <div class="col">
-      <%= f.text_field :last_name_kana, placeholder: "レイワ", class: "form-control" %>
+    <div class="form-group row">
+      <label class="col-3 col-form-label">フリガナ</label>
+      <label>(セイ)</label>
+      <div class="col">
+        <%= f.text_field :last_name_kana, placeholder: "レイワ", class: "form-control" %>
+      </div>
+      <label>(カナ)</label>
+      <div class="col">
+        <%= f.text_field :first_name_kana, placeholder: "ミチコ", class: "form-control" %>
+      </div>
     </div>
-    <label>(カナ)</label>
-    <div class="col">
-      <%= f.text_field :first_name_kana, placeholder: "ミチコ", class: "form-control" %>
+    <div class="form-group row">
+      <label class="col-3 col-form-label">所属</label>
+      <div class="col-3">
+        <%= f.select :department_id, options_from_collection_for_select(Department.all, :id, :name), class: "form-control" %>
+      </div>
     </div>
-  </div>
-  <div>
-    <%= f.select :department_id, options_from_collection_for_select(Department.all, :id, :name) %>
-  </div>
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-  <div class="actions">
-    <%= f.submit "新規登録" %>
-  </div>
-<% end %>
+    <div class="form-group row">
+      <label class="col-3 col-form-label">パスワード
+        <% if @minimum_password_length %>
+        (<%= @minimum_password_length %> 文字以上)
+        <% end %>
+      </label>
+      <div class="col-3">
+        <%= f.password_field :password, autocomplete: "new-password", class: "form-control" %>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-3 col-form-label">パスワード</label>
+      <div class="col-3">
+        <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control" %>
+      </div>
+    </div>
+    <div class="form-group row">
+      <div class="col-3"></div>
+      <div class="col-4">
+        <%= f.submit "新規登録", class: 'btn btn-outline-primary' %>
+      </div>
+    </div>
+  <% end %>
+</div>

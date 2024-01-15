@@ -31,6 +31,16 @@
                     <span>従業員一覧</span>
                   <% end %>
                 </li>
+                <li class="nav-item" style="margin-right: 10px;">
+                  <%= link_to daily_reports_path, class: 'text-decoration-none text-dark btn-default' do %>
+                    <span>日報一覧</span>
+                  <% end %>
+                </li>
+                <li class="nav-item" style="margin-right: 10px;">
+                  <%= link_to report_serach_path, class: 'text-decoration-none text-dark btn-default' do %>
+                    <span>日報検索</span>
+                  <% end %>
+                </li>
                 <li class="nav-item">
                   <%= link_to destroy_employer_session_path, method: :delete, class: 'text-decoration-none text-dark btn-default' do%>
                     <span>ログアウト</span>
@@ -38,6 +48,11 @@
                 </li>
 
               <% elsif employee_signed_in? %>
+                <li class="nav-item" style="margin-right: 10px;">
+                  <%= link_to todays_reports_path, class: 'text-decoration-none text-dark btn-default' do %>
+                    <span>日報登録</span>
+                  <% end %>
+                </li>
                 <li class="nav-item" style="margin-right: 10px;">
                   <%= link_to daily_reports_path, class: 'text-decoration-none text-dark btn-default' do %>
                     <span>日報一覧</span>
@@ -61,13 +76,13 @@
 
               <% else %>
                 <li class="nav-item" style="margin-right: 10px;">
-                  <%= link_to new_employer_registration_path, class: 'text-decoration-none text-dark btn-default' do %>
-                    <span>新規登録</span>
+                  <%= link_to new_employee_session_path, class: 'text-decoration-none text-dark btn-default' do %>
+                    <span>従業員ログイン</span>
                   <% end %>
                 </li>
                 <li class="nav-item">
                   <%= link_to new_employer_session_path, class: 'text-decoration-none text-dark btn-default' do %>
-                    <span>ログイン</span>
+                    <span>管理者ログイン</span>
                   <% end %>
                 </li>
               <% end %>

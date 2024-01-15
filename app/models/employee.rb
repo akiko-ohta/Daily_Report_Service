@@ -5,7 +5,7 @@ class Employee < ApplicationRecord
          :recoverable, :rememberable, :validatable,
          :authentication_keys => [:user_code]
   belongs_to :department
-  has_many :dayly_reports, dependent: :destroy
+  has_many :daily_tasks, dependent: :destroy
 
   validates :user_code, presence: true, uniqueness: true
   validates :department_id, presence: true
@@ -26,6 +26,10 @@ class Employee < ApplicationRecord
 
   def will_save_change_to_email?
     false
+  end
+
+  def employee_display
+    last_name + ' ' + first_name
   end
 
 end

@@ -1,13 +1,29 @@
-<h3>部署一覧</h3>
+<div class="container">
+  <div class="row">
+    <h4>部署一覧</h4>
+  </div>
   <%= form_with model: @department, url: '/departments', method: :post do |f| %>
-    <%= f.text_field :name %>
-    <%= f.submit '新規部署登録' %>
+    <div class="form-group row">
+      <div class="col-3">
+        <%= f.text_field :name, class: "form-control", placeholder: "部署名" %>
+      </div>
+      <div class="col-6">
+        <%= f.submit "新規部署登録", class: "btn btn-outline-primary" %>
+      </div>
+    </div>
   <% end %>
   <% @departments.each do |department| %>
-    <%= link_to employees_path, class: 'text_dark btn-default' do %>
-      <%= department.name %>
-    <% end %>
-    <%= link_to edit_department_path(department.id), class: 'btn-success' do %>
-      <span>編集</span>
-    <% end %>
+    <div class="row mb-3">
+      <div class="col-3">
+        <%= link_to employees_path, class: 'text_dark btn-default' do %>
+          <%= department.name %>
+        <% end %>
+      </div>
+      <div class="col-3">
+        <%= link_to edit_department_path(department.id), class: "btn btn-outline-success" do %>
+          <span>編集</span>
+        <% end %>
+      </div>
+    </div>
   <% end %>
+</div>

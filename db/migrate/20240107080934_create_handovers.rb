@@ -4,6 +4,7 @@ class CreateHandovers < ActiveRecord::Migration[6.1]
 
       t.timestamps
       t.text :handover
+      t.integer :department_id, null: false
     end
   end
 end

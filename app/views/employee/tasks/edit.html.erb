@@ -1,11 +1,11 @@
 <div class="container">
   <div class="row">
-    <h4 class="bg-light px-3 my-3">業務情報編集</h4>
+    <h4>業務情報編集</h4>
   </div>
   <%= form_with model: @task do |f| %>
   <div class="form-group row">
     <label class="col-3 col-form-label">業務名</label>
-    <div class="col">
+    <div class="col-3">
       <%= f.text_field :name, class: "form-control" %>
     </div>
   </div>
