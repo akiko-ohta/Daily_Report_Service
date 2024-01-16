@@ -6,13 +6,15 @@ class Employee::TodaysReportsController < ApplicationController
     if current_employee.department.todays_reports.exists?
       @todays_reports = current_employee.department.todays_reports.all
     end
-    last_todays_report_date = TodaysReport.last&.created_at&.to_date
-    # 最後に作成した当日日報の日付を検索
-    if last_todays_report_date.present?
-    # 一致するものがあれば@handoverに代入
-      @handover = Handover.find_by(created_at: last_todays_report_date.beginning_of_day..last_todays_report_date.end_of_day)
+    # 最後に作成した当日日報、引継ぎの日付を代入
+    last_todays_report_date = current_employee.department.todays_reports.last&.created_at&.to_date
+    last_handover = current_employee.department.handover.last&.created_at&.to_date
+    # 所属部署で最後に作成した当日日報の日付と一致するhandoverがあるか確認
+    if last_todays_report_date == last_handover && handover.present?
+      # 存在する場合はその情報を取得
+      @handover = Handover.find_by(created_at: last_handover.beginning_of_day..last_handover.end_of_day)
     else
-    # なければ@handoverを新規に作成
+      # 存在しない場合は新規作成
       @handover = Handover.new
     end
     @daily_report = DailyReport.new
@@ -39,7 +41,9 @@ class Employee::TodaysReportsController < ApplicationController
   end
 
   def update_handover
-    last_todays_report_date = TodaysReport.last&.created_at&.to_date
+    # 最後に作成した当日日報の作成日を代入
+    last_todays_report_date = current_employee.department.todays_reports.last&.created_at&.to_date
+    # 同じ日付に作成された引継ぎを取得
     @handover = Handover.find_by(created_at: last_todays_report_date.beginning_of_day..last_todays_report_date.end_of_day)
     @handover.update(handover_params)
     redirect_to todays_reports_path
@@ -54,5 +58,4 @@ class Employee::TodaysReportsController < ApplicationController
   def handover_params
     params.require(:handover).permit(:handover, :department_id)
   end
-
 end

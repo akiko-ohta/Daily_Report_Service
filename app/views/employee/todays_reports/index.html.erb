@@ -15,60 +15,65 @@
       <% end %>
     <% end %>
   </div>
-  <div class="row">
-    <table class="table table-bordered mb-5">
-      <thead class="thead-light">
-        <th>時間</th>
-        <th>業務名</th>
-        <th>実行者</th>
-        <th></th>
-      </thead>
-      <%# todays_reportsの存在確認。登録済みなら表示　%>
-      <% if @todays_reports.present? %>
+  <%# todays_reportsの存在確認。登録済みの場合以下を表示　%>
+  <% if @todays_reports.present? %>
+    <div class="row">
+      <table class="table table-bordered mb-5">
+        <thead class="thead-light">
+          <th>時間</th>
+          <th>業務名</th>
+          <th>実行者</th>
+          <th></th>
+        </thead>
         <% @todays_reports.each do |todays_report| %>
-        <tr>
-          <td>
-            <%= todays_report.task.execution_time %>
-          </td>
-          <td>
-            <%= todays_report.task.name %>
-          </td>
-          <%= form_with model: todays_report do |f| %>
-          <td>
-            <%= f.select :practitioner, options_for_select(options_from_collection_for_select(current_employee.department.employees.all, :id, :employee_display), ''), { prompt: '選択してください' } %>
-          </td>
-          <td>
-            <%= f.submit '変更', class: 'btn btn-outline-success' %>
-          </td>
-          <% end %>
-        </tr>
-      <% end %>
-    </table>
-  </div>
-  <% if @handover.present? %>
-    <div class="form-group row">
+          <tr>
+            <td>
+              <%= todays_report.task.execution_time %>
+            </td>
+            <td>
+              <%= todays_report.task.name %>
+            </td>
+            <%= form_with model: todays_report do |f| %>
+            <td>
+              <%= f.select :practitioner, options_for_select(options_from_collection_for_select(current_employee.department.employees.all, :id, :employee_display), ''), { prompt: '選択してください' } %>
+            </td>
+            <td>
+              <%= f.submit '変更', class: 'btn btn-outline-success' %>
+            </td>
+            <% end %>
+          </tr>
+        <% end %>
+      </table>
+    </div>
+    <%# handoverの存在確認 %>
+    <% if @handover.present? %>
+    <%# 登録済みの場合は以下を表示 %>
       <%= form_with(model: @handover, url: update_handover_path, method: :patch) do |f| %>
-      <div class="col-12">
-        <%= f.text_area :handover, class: 'form-control' %>
-      </div>
-      <div class="form-group row">
-        <div class="col">
-          <%= f.submit '引継ぎ登録', class: 'btn btn-outline-success' %>
+        <div class="form-group row">
+          <div class="col-12">
+            <%= f.text_area :handover, class: 'form-control' %>
+          </div>
         </div>
-      </div>
+        <div class="form-group row">
+          <div class="col">
+            <%= f.submit '引継ぎ登録', class: 'btn btn-outline-success' %>
+          </div>
+        </div>
       <% end %>
+    <%# 未登録の場合は以下を表示 %>
     <% else %>
-    <div class="form-group row">
       <%= form_with(model: @handover, url: create_handover_path, method: :post) do |f| %>
-      <div class="col-12">
-        <%= f.text_area :handover, class: 'form-control' %>
-      </div>
-      <%= f.hidden_field :department_id, value: current_employee.department.id %>
-      <div class="form-group row">
-        <div class="col">
-          <%= f.submit '引継ぎ作成', class: 'btn btn-outline-primary' %>
+        <div class="form-group row">
+          <div class="col-12">
+            <%= f.text_area :handover, class: 'form-control' %>
+          </div>
         </div>
-      </div>
+        <%= f.hidden_field :department_id, value: current_employee.department.id %>
+        <div class="form-group row">
+          <div class="col">
+            <%= f.submit '引継ぎ作成', class: 'btn btn-outline-primary' %>
+          </div>
+        </div>
       <% end %>
     <% end %>
   <% end %>
