@@ -9,6 +9,7 @@ class Employee::TodaysReportsController < ApplicationController
     # 最後に作成した当日日報、引継ぎの日付を代入
     last_todays_report_date = current_employee.department.todays_reports.last&.created_at&.to_date
     last_handover = current_employee.department.handover.last&.created_at&.to_date
+    handover = current_employee.department.handover.last
     # 所属部署で最後に作成した当日日報の日付と一致するhandoverがあるか確認
     if last_todays_report_date == last_handover && handover.present?
       # 存在する場合はその情報を取得

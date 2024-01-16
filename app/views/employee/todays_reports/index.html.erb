@@ -46,22 +46,8 @@
       </table>
     </div>
     <%# handoverの存在確認 %>
-    <% if @handover.present? %>
-    <%# 登録済みの場合は以下を表示 %>
-      <%= form_with(model: @handover, url: update_handover_path, method: :patch) do |f| %>
-        <div class="form-group row">
-          <div class="col-12">
-            <%= f.text_area :handover, class: 'form-control' %>
-          </div>
-        </div>
-        <div class="form-group row">
-          <div class="col">
-            <%= f.submit '引継ぎ登録', class: 'btn btn-outline-success' %>
-          </div>
-        </div>
-      <% end %>
-    <%# 未登録の場合は以下を表示 %>
-    <% else %>
+    <% if @handover.blank? %>
+    <%# 未作成の場合は以下を表示 %>
       <%= form_with(model: @handover, url: create_handover_path, method: :post) do |f| %>
         <div class="form-group row">
           <div class="col-12">
@@ -72,6 +58,20 @@
         <div class="form-group row">
           <div class="col">
             <%= f.submit '引継ぎ作成', class: 'btn btn-outline-primary' %>
+          </div>
+        </div>
+      <% end %>
+    <%# 登録済みの場合は以下を表示 %>
+    <% else %>
+      <%= form_with(model: @handover, url: update_handover_path, method: :patch) do |f| %>
+        <div class="form-group row">
+          <div class="col-12">
+            <%= f.text_area :handover, class: 'form-control' %>
+          </div>
+        </div>
+        <div class="form-group row">
+          <div class="col">
+            <%= f.submit '引継ぎ登録', class: 'btn btn-outline-success' %>
           </div>
         </div>
       <% end %>
