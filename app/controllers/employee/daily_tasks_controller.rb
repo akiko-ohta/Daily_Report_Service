@@ -1,13 +1,13 @@
-class Employee::DailyReportsController < ApplicationController
+class Employee::DailyTasksController < ApplicationController
 
   def create
     @daily_report = DailyReport.new(daily_report_params)
     @daily_report.save
-    @todays_reports = current_employee.department.todays_reports.all
-    @todays_reports.each do |todays_report|
+    @todays_tasks = current_employee.department.todays_tasks.all
+    @todays_tasks.each do |todays_task|
       DailyTask.create(task_id: todays_report.task.id, employee_id: todays_report.practitioner)
     end
-    current_employee.department.todays_reports.destroy_all
+    current_employee.department.todays_tasks.destroy_all
     redirect_to daily_reports_path
   end
 
@@ -19,13 +19,9 @@ class Employee::DailyReportsController < ApplicationController
     @daily_report =DailyReport.find(params[:id])
   end
 
-  def destroy_all
-    current_employee.department.todays_report.destroy_all
-  end
-
   private
 
   def daily_report_params
-    params.require(:daily_report).permit(:department_id)
+    params.require(:daily_report).permit(:department_id, :dayly_task_id, :handover_id)
   end
 end

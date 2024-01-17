@@ -16,13 +16,13 @@ ActiveRecord::Schema.define(version: 2024_01_11_062221) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "department_id", null: false
+    t.integer "handover_id", null: false
     t.integer "daily_task_id", null: false
   end
 
   create_table "daily_tasks", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "department_id", null: false
     t.integer "task_id", null: false
     t.string "employee_id"
   end
@@ -79,7 +79,7 @@ ActiveRecord::Schema.define(version: 2024_01_11_062221) do
     t.integer "department_id", null: false
   end
 
-  create_table "todays_reports", force: :cascade do |t|
+  create_table "todays_tasks", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "department_id", null: false

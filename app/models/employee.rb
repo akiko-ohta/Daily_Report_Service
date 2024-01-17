@@ -5,7 +5,6 @@ class Employee < ApplicationRecord
          :recoverable, :rememberable, :validatable,
          :authentication_keys => [:user_code]
   belongs_to :department
-  has_many :daily_tasks, dependent: :destroy
 
   validates :user_code, presence: true, uniqueness: true
   validates :department_id, presence: true

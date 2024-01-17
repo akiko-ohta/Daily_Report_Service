@@ -1,4 +1,4 @@
-class TodaysReport < ApplicationRecord
+class TodaysTask < ApplicationRecord
   belongs_to :department
   belongs_to :task
 

@@ -1,5 +1,5 @@
 class Task < ApplicationRecord
-  has_many :todays_reports, dependent: :destroy
+  has_many :todays_tasks, dependent: :destroy
   has_many :daily_tasks, dependent: :destroy
   belongs_to :department
 
