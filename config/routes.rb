@@ -6,14 +6,14 @@ scope module: :employer do
   end
 
   scope module: :employee do
-    resources :todays_task, :path => "todays_report"
+    resources :todays_tasks, :path => "todays_reports"
     get "report_serach" => "report_serach#index"
     resources :tasks, only: [:new, :create, :index, :edit, :update]
-    resources :daily_tasks, only: [:new, :create]
+    resources :daily_tasks, only: [:create]
     resources :todays_tasks, only: [:index, :create, :update]
-    resources :handover, only: [:update, :index, :show]
-    post "create_handover" => "todays_reports#create_handover"
-    patch "update_handover" => "todays_reports#update_handover"
+    resources :daily_reports, only: [:create, :index, :show]
+    post "create_handover" => "todays_tasks#create_handover"
+    patch "update_handover" => "todays_tasks#update_handover"
     post "create_daily_report" => "todays_reports#create_daily_report"
   end
 

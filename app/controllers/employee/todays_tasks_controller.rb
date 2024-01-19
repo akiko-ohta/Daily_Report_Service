@@ -1,23 +1,20 @@
 class Employee::TodaysTasksController < ApplicationController
 
   def index
-    @todays_task = TodaysTask.new
+    @todays_report = TodaysTask.new
     @tasks = current_employee.department.tasks.where(is_active: true)
     if current_employee.department.todays_tasks.exists?
       @todays_tasks = current_employee.department.todays_tasks.all
     end
     # 最後に作成した当日日報、引継ぎの日付を代入
     last_todays_task_date = current_employee.department.todays_tasks.last&.created_at&.to_date
-    last_handover = current_employee.department.handover.last&.created_at&.to_date
-    handover = current_employee.department.handover.last
+    last_handover_date = current_employee.department.handover.last&.created_at&.to_date
     # 所属部署で最後に作成した当日日報の日付と一致するhandoverがあるか確認
-    if last_todays_task_date == last_handover && handover.present?
+    if last_todays_task_date == last_handover_date
       # 存在する場合はその情報を取得
-      @handover = Handover.find_by(created_at: last_handover.beginning_of_day..last_handover.end_of_day)
-    else
-      # 存在しない場合は新規作成
-      @handover = Handover.new
+      @handover = Handover.last
     end
+    @handover_blank = Handover.new
     @daily_report = DailyReport.new
   end
 
