@@ -1,7 +1,8 @@
 class Employee::TodaysTasksController < ApplicationController
 
   def index
-    @todays_report = TodaysTask.new
+    @daily_report = DailyReport.new
+    @todays_task = TodaysTask.new
     @tasks = current_employee.department.tasks.where(is_active: true)
     if current_employee.department.todays_tasks.exists?
       @todays_tasks = current_employee.department.todays_tasks.all
