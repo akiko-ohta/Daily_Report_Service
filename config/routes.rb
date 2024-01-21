@@ -7,7 +7,8 @@ scope module: :employer do
   end
 
   scope module: :employee do
-    resources :todays_tasks, :path => "todays_reports"
+    get 'report_serachs/sera'
+    get 'report_serachs/serach_result'
     get "report_serach" => "report_serach#index"
     resources :tasks, only: [:new, :create, :index, :edit, :update]
     resources :daily_tasks, only: [:create]
