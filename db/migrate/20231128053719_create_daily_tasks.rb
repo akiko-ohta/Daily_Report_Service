@@ -6,6 +6,7 @@ class CreateDailyTasks < ActiveRecord::Migration[6.1]
 
       t.integer :task_id, null: false
       t.string :employee_id
+      t.integer :daily_report_id, null: false
     end
   end
 end
