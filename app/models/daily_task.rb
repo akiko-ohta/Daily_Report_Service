@@ -4,4 +4,5 @@ class DailyTask < ApplicationRecord
 
   validates :task_id, presence: true
   validates :daily_report_id, presence: true
+
 end

@@ -1,7 +1,6 @@
 class Employee::DailyReportsController < ApplicationController
 
   def create
-    #byebug
     @daily_report = DailyReport.new(daily_report_params)
     @daily_report.save
     @todays_tasks = current_employee.department.todays_tasks.all
@@ -17,14 +16,12 @@ class Employee::DailyReportsController < ApplicationController
   end
 
   def show
-    @daily_report =DailyReport.find(params[:id])
-    last_daily_report_date = current_employee.department.daily_report.last&.created_at&.to_date
-    last_handover_date = current_employee.department.handover.last&.created_at&.to_date
-    # 所属部署で最後に作成した当日日報の日付と一致するhandoverがあるか確認
-    if last_daily_report_date == last_handover_date
-      # 存在する場合はその情報を取得
-      @handover = Handover.last
-    end
+    @daily_report = DailyReport.find(params[:id])
+    @daily_tasks = @daily_report.daily_tasks.includes(:task).order('tasks.execution_time ASC').all
+    # 現在の日報の作成日を取得
+    creation_date = @daily_report.created_at.to_date
+    # 日報と同じ作成日の引継ぎを取得
+    @handover = Handover.where("DATE(created_at) = ?", creation_date).first
   end
 
   private

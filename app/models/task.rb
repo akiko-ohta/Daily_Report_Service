@@ -7,4 +7,8 @@ class Task < ApplicationRecord
   validates :execution_time, presence: true
 
   enum is_active: { '有効': true, '無効': false }
+
+  def task_execution_time
+    task&.execution_time
+  end
 end

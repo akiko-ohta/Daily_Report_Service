@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 scope module: :employer do
     resources :departments, only: [:new, :create, :index, :edit, :update]
     resources :employees, only: [:index, :edit, :update]
+    resources :daily_report, only: [:index, :show]
   end
 
   scope module: :employee do

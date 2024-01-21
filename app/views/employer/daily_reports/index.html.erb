@@ -5,8 +5,15 @@
   <div class="row">
     <div class="col-5">
       <table class="table table-bordered">
+        <thead class="thead-light">
+        <th>部署</th>
+        <th>日報作成日</th>
+      </thead>
         <% @daily_reports.each do |daily_report| %>
         <tr>
+          <td>
+            <%= daily_reports.department_name %>
+          </td>
           <td>
             <%= link_to daily_report_path(daily_report.id), class: 'text-dark  btn-default' do %>
               <%= daily_report.created_at.strftime('%Y/%m/%d') %>

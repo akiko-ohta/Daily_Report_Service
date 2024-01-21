@@ -18,7 +18,7 @@
       <% @tasks.each do |task| %>
         <tr>
           <td>
-            <%= task.execution_time %>
+            <%= task.execution_time.strftime('%H:%M') %>
           </td>
           <td>
             <%= task.name %>

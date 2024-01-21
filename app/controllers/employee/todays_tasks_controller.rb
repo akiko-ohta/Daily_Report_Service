@@ -5,7 +5,7 @@ class Employee::TodaysTasksController < ApplicationController
     @todays_task = TodaysTask.new
     @tasks = current_employee.department.tasks.where(is_active: true)
     if current_employee.department.todays_tasks.exists?
-      @todays_tasks = current_employee.department.todays_tasks.all
+      @todays_tasks = current_employee.department.todays_tasks.includes(:task).order('tasks.execution_time ASC').all
     end
     # 最後に作成した当日日報、引継ぎの日付を代入
     last_todays_task_date = current_employee.department.todays_tasks.last&.created_at&.to_date
