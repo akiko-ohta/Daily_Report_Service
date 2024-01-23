@@ -24,6 +24,24 @@ class Employee::DailyReportsController < ApplicationController
     @handover = Handover.where("DATE(created_at) = ?", creation_date).first
   end
 
+  def search
+    redirect_to daily_reports_path if params[:keyword].blank?
+    keywords = params[:keyword].split(/[[:blank:]]+/).select(&:present?)
+    negative_keywords, positive_keywords =
+    keywords.partition {|keyword| keyword.start_with?("-") }
+    @handover = Handover.none
+    positive_keywords.each do |keyword|
+      @handover = @handover.or(Handover.where("handover LIKE ?", "%#{keyword}%"))
+    end
+    negative_keywords.each do |keyword|
+      @handover.where.not("handover LIKE ?", "%#{keyword.delete_prefix('-')}%")
+    end
+
+    @handovers = current_employee.department.handover.all
+    # 引継ぎと同じ作成日の日報を取得
+    @daily_reports = DailyReport.where("DATE(created_at) IN (?)", @handovers.pluck(:created_at).map(&:to_date))
+  end
+
   private
 
   def daily_report_params

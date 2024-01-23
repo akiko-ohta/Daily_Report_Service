@@ -35,7 +35,7 @@
             </td>
             <%= form_with model: todays_task do |f| %>
             <td>
-              <%= f.select :practitioner, options_for_select(options_from_collection_for_select(current_employee.department.employees.all, :id, :employee_display), ''), { prompt: '選択してください' } %>
+              <%= f.select :practitioner, options_from_collection_for_select(current_employee.department.employees.all, :id, :employee_display, { :selected => todays_task.practitioner.to_i }), { prompt: '選択してください' } %>
             </td>
             <td>
               <%= f.submit '変更', class: 'btn btn-outline-success' %>
@@ -64,7 +64,7 @@
     <% else %>
      <%# 登録済みの場合は以下を表示 %>
       <%= form_with(model: @handover, url: update_handover_path, method: :patch) do |f| %>
-        <div class="form-group row">
+        <div class="form-group rows=5">
           <div class="col-12">
             <%= f.text_area :handover, class: 'form-control' %>
           </div>
