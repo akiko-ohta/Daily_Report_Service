@@ -1,13 +1,16 @@
 Rails.application.routes.draw do
 
-scope module: :employer do
+  get 'home/top'
+  scope module: :employer do
     resources :departments, only: [:new, :create, :index, :edit, :update]
     resources :employees, only: [:index, :edit, :update]
-    resources :daily_report, only: [:index]
+  end
+
+  namespace :employer do
+    resources :daily_report, only: [:index, :show]
   end
 
   scope module: :employee do
-
     resources :tasks, only: [:new, :create, :index, :edit, :update]
     resources :daily_tasks, only: [:create]
     resources :todays_tasks, only: [:index, :create, :update]
@@ -32,6 +35,8 @@ devise_for :employee, controllers: {
   sessions: 'employee/sessions'
 }
 
-root to: "homes#top"
+  devise_scope :employee do
+    root :to => "employee/sessions#new"
+  end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
