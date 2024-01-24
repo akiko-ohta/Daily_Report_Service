@@ -1,7 +1,7 @@
 class Employer::DailyReportsController < ApplicationController
 
   def index
-    @daily_reports = DailyReport.all
+    @daily_reports = DailyReport.page(params[:page]).per(31)
   end
 
   def show

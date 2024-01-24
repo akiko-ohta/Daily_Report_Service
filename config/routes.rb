@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   end
 
   namespace :employer do
-    resources :daily_report, only: [:index, :show]
+    resources :daily_reports, only: [:index, :show]
   end
 
   scope module: :employee do

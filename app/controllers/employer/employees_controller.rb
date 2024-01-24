@@ -1,6 +1,7 @@
 class Employer::EmployeesController < ApplicationController
   def index
     @employees = Employee.all
+    @department = Department.find_by(name: params[:department_name])
   end
 
   def edit

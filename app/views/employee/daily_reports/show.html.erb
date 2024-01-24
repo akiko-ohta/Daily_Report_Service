@@ -1,36 +1,3 @@
 <div class="container">
-  <div class="row">
-    <h4><%= @daily_report.created_at.strftime('%Y/%m/%d') %>の日報</h4>
-  </div>
-  <div class="row">
-    <table class="table table-bordered mb-5">
-      <thead class="thead-light">
-        <th>時間</th>
-        <th>業務名</th>
-        <th>実行者</th>
-      </thead>
-      <% @daily_tasks.each do |daily_task| %>
-        <tr>
-          <td>
-            <%= daily_task.task.execution_time.strftime('%H:%M') %>
-          </td>
-          <td>
-            <%= daily_task.task.name %>
-          </td>
-          <td>
-            <% if daily_task.employee_id.present? && (employee = Employee.find_by(id: daily_task.employee_id)).present? %>
-              <%= employee.last_name %><%= employee.first_name %>
-            <% else %>
-              <%= "　" %>
-            <% end %>
-          </td>
-        </tr>
-      <% end %>
-    </table>
-  </div>
-  <div class="row">
-    <div class="col-3">
-      <%= @handover.handover %>
-    </div>
-  </div>
+  <%= render partial: 'daily_report', locals: {daily_report: @daily_report, daily_tasks: @daily_tasks, handover: params[:handover]} %>
 </div>

@@ -12,18 +12,24 @@
       </div>
     </div>
   <% end %>
-  <% @departments.each do |department| %>
-    <div class="row mb-3">
-      <div class="col-3">
-        <%= link_to employees_path, class: 'text_dark btn-default' do %>
-          <%= department.name %>
+  <div class="row mb-3">
+    <div class="col-6">
+      <table class="table table-bordered mb-5">
+        <% @departments.each do |department| %>
+          <tr>
+            <td>
+              <%= link_to employees_path(department_name: department.name), class: 'btn text_dark btn-default' do %>
+                <%= department.name %>
+              <% end %>
+            </td>
+            <td>
+              <%= link_to edit_department_path(department.id), class: "btn btn-outline-success" do %>
+                <span>編集</span>
+              <% end %>
+            </td>
+          </tr>
         <% end %>
-      </div>
-      <div class="col-3">
-        <%= link_to edit_department_path(department.id), class: "btn btn-outline-success" do %>
-          <span>編集</span>
-        <% end %>
-      </div>
+      </table>
     </div>
-  <% end %>
+  </div>
 </div>
