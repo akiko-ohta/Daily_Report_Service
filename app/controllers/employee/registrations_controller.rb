@@ -43,7 +43,7 @@ class Employee::RegistrationsController < Devise::RegistrationsController
   #   super
   # end
 
-  # protected
+   protected
 
   # If you have extra params to permit, append them to the sanitizer.
   # def configure_sign_up_params
@@ -65,7 +65,11 @@ class Employee::RegistrationsController < Devise::RegistrationsController
   #   super(resource)
   # end
 
-  protected
+  def sign_up(resource_name, resource)
+    if current_employer.present?
+      sign_in(resource_name, resource)
+    end
+  end
 
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:sign_up, keys: [:user_code, :last_name, :first_name, :last_name_kana, :first_name_kana, :department_id])

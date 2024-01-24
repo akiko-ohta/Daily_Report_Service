@@ -1,6 +1,6 @@
 class Employer::EmployeesController < ApplicationController
   def index
-    @employees = Employee.all
+    @employees = Employee.page(params[:page]).per(10)
     @department = Department.find_by(name: params[:department_name])
   end
 

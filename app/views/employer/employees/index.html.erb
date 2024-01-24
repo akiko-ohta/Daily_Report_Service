@@ -1,6 +1,10 @@
 <div class="container">
-  <div class="row">
-    <h4>従業員一覧</h4>
+  <div class="row mb-3">
+    <% if @department.present? %>
+      <h4><%= @department.name %>の従業員一覧</h4>
+    <% else %>
+      <h4>従業員一覧</h4>
+    <% end %>
   </div>
   <div class="row mb-3">
     <%= link_to new_employee_registration_path, class: 'btn btn-outline-success' do %>
@@ -9,88 +13,88 @@
   </div>
   <div class="row">
     <% if @department.present? %>
-    <table class="table table-bordered mb-5">
-      <thead class="thead-light">
-        <th>所属部署</th>
-        <th>ユーザーコード</th>
-        <th>氏名</th>
-        <th>氏名（カナ）</th>
-        <th>所属ステータス</th>
-        <th></th>
-      </thead>
-      <% @department.employees.each do |employee| %>
-        <tr>
-          <td>
-            <%= employee.department.name %>
-          </td>
-          <td>
-            <%= employee.user_code %>
-          </td>
-          <td>
-            <%= employee.last_name %>
-            <%= employee.first_name %>
-          </td>
-          <td>
-            <%= employee.last_name_kana %>
-            <%= employee.first_name_kana %>
-          </td>
-          <td>
-            <% if employee.is_active == "有効" %>
-              <span class="text-success"><strong><%= employee.is_active %></strong></span>
-            <% else %>
-              <span class="text-secondary"><strong><%= employee.is_active %></strong></span>
-            <% end %>
-          </td>
-          <td>
-            <%= link_to edit_employee_path(employee.id), class: 'btn btn-outline-success' do %>
-              <span>編集</span>
-            <% end %>
-          </td>
-        </tr>
-      <% end %>
-    </table>
-
+      <table class="table table-bordered mb-5">
+        <thead class="thead-light">
+          <th>ユーザーコード</th>
+          <th>氏名</th>
+          <th>氏名（カナ）</th>
+          <th>所属ステータス</th>
+          <th></th>
+        </thead>
+        <% @department.employees.each do |employee| %>
+          <tr>
+            <td>
+              <%= employee.user_code %>
+            </td>
+            <td>
+              <%= employee.last_name %>
+              <%= employee.first_name %>
+            </td>
+            <td>
+              <%= employee.last_name_kana %>
+              <%= employee.first_name_kana %>
+            </td>
+            <td>
+              <% if employee.is_active == "有効" %>
+                <span class="text-success"><strong><%= employee.is_active %></strong></span>
+              <% else %>
+                <span class="text-secondary"><strong><%= employee.is_active %></strong></span>
+              <% end %>
+            </td>
+            <td>
+              <%= link_to edit_employee_path(employee.id), class: 'btn btn-outline-success' do %>
+                <span>編集</span>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </table>
     <% else %>
-    <table class="table table-bordered mb-5">
-      <thead class="thead-light">
-        <th>所属部署</th>
-        <th>ユーザーコード</th>
-        <th>氏名</th>
-        <th>氏名（カナ）</th>
-        <th>所属ステータス</th>
-        <th></th>
-      </thead>
-      <% @employees.each do |employee| %>
-        <tr>
-          <td>
-            <%= employee.department.name %>
-          </td>
-          <td>
-            <%= employee.user_code %>
-          </td>
-          <td>
-            <%= employee.last_name %>
-            <%= employee.first_name %>
-          </td>
-          <td>
-            <%= employee.last_name_kana %>
-            <%= employee.first_name_kana %>
-          </td>
-          <td>
-            <% if employee.is_active == "有効" %>
-              <span class="text-success"><strong><%= employee.is_active %></strong></span>
-            <% else %>
-              <span class="text-secondary"><strong><%= employee.is_active %></strong></span>
-            <% end %>
-          </td>
-          <td>
-            <%= link_to edit_employee_path(employee.id), class: 'btn btn-outline-success' do %>
-              <span>編集</span>
-            <% end %>
-          </td>
-        </tr>
-      <% end %>
-    </table>
+      <table class="table table-bordered mb-5">
+        <thead class="thead-light">
+          <th>所属部署</th>
+          <th>ユーザーコード</th>
+          <th>氏名</th>
+          <th>氏名（カナ）</th>
+          <th>所属ステータス</th>
+          <th></th>
+        </thead>
+        <% @employees.each do |employee| %>
+          <tr>
+            <td>
+              <%= employee.department.name %>
+            </td>
+            <td>
+              <%= employee.user_code %>
+            </td>
+            <td>
+              <%= employee.last_name %>
+              <%= employee.first_name %>
+            </td>
+            <td>
+              <%= employee.last_name_kana %>
+              <%= employee.first_name_kana %>
+            </td>
+            <td>
+              <% if employee.is_active == "有効" %>
+                <span class="text-success"><strong><%= employee.is_active %></strong></span>
+              <% else %>
+                <span class="text-secondary"><strong><%= employee.is_active %></strong></span>
+              <% end %>
+            </td>
+            <td>
+              <%= link_to edit_employee_path(employee.id), class: 'btn btn-outline-success' do %>
+                <span>編集</span>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </table>
     <% end %>
+  </div>
+  <div class="row">
+    <div class="col text-center">
+      <%= paginate @employees %>
+    </div>
   </div>
 </div>
