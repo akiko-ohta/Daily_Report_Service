@@ -32,7 +32,7 @@ class Employee::DailyReportsController < ApplicationController
     keywords.each do |keyword|
       @handovers = current_employee.department.handover.where("handover LIKE ?", "%#{keyword}%")
     end
-    @daily_reports = DailyReport.all
+    @daily_reports = current_employee.department.daily_report.all
   end
 
   private

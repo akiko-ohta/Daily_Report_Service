@@ -6,6 +6,7 @@ class Employer::DepartmentsController < ApplicationController
     if department.save
       redirect_to departments_path
     else
+      @departments = Department.all
       render :index
     end
   end

@@ -1,5 +1,5 @@
 <div class="container">
-  <div class="row">
+  <div class="row mb-3">
     <h4>検索結果一覧</h4>
   </div>
   <div class="row mb-3">
@@ -7,19 +7,16 @@
   </div>
   <div class="row">
     <div class="col-5">
-      <table class="table table-bordered">
-        <% @handovers.each do |handover| %>
-          <tr>
-            <td>
-              <% daily_report = @daily_reports.find { |daily_report| daily_report.created_at.to_date == handover.created_at.to_date } %>
-              <%= link_to daily_report_path(daily_report.id), class: 'text-dark btn-default' do %>
-                <%= handover.created_at.strftime('%Y/%m/%d') %>
-                <%= handover.handover.truncate(100) %>
-              <% end %>
-            </td>
-          </tr>
+      <% @handovers.each do |handover| %>
+        <% employer_daily_report = @daily_reports.find do |report|
+            report.created_at.to_date == handover.created_at.to_date &&
+            report.department == handover.department
+        end %>
+        <%= link_to employer_daily_report_path(employer_daily_report.id), class: 'text-dark btn-default' do %>
+          <%= handover.handover.truncate(100) %>
+          <%= handover.created_at.strftime('%Y/%m/%d') %>
         <% end %>
-      </table>
+      <% end %>
     </div>
   </div>
 </div>
