@@ -6,8 +6,8 @@ class Employer::SessionsController < Devise::SessionsController
       employer_daily_reports_path
   end
 
-  def after_sign_in_path_for(resource)
-      employer_sessions_new_path
+  def after_sign_out_path_for(resource)
+      new_employer_session_path
   end
 
   # GET /resource/sign_in

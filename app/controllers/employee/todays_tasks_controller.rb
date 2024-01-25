@@ -1,4 +1,5 @@
 class Employee::TodaysTasksController < ApplicationController
+  before_action :authenticate_employee!
 
   def index
     @daily_report = DailyReport.new

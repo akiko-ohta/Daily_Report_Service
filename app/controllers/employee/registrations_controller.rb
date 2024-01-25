@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class Employee::RegistrationsController < Devise::RegistrationsController
+  before_action :authenticate_employer!
   before_action :configure_permitted_parameters, if: :devise_controller?
 
   def after_sign_up_path_for(resource)
@@ -68,6 +69,12 @@ class Employee::RegistrationsController < Devise::RegistrationsController
   def sign_up(resource_name, resource)
     if current_employer.present?
       sign_in(resource_name, resource)
+    end
+  end
+
+  def authenticate_employer!
+    if current_employer.nil?
+      redirect_to new_employer_session_path
     end
   end
 

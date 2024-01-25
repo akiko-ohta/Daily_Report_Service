@@ -1,4 +1,6 @@
 class Employer::EmployeesController < ApplicationController
+  before_action :authenticate_employer!
+
   def index
     @employees = Employee.page(params[:page]).per(10)
     @department = Department.find_by(name: params[:department_name])

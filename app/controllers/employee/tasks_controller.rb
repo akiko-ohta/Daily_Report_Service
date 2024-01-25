@@ -1,4 +1,5 @@
 class Employee::TasksController < ApplicationController
+  before_action :authenticate_employee!
 
   def new
     @task = Task.new

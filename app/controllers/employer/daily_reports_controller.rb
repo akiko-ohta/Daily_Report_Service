@@ -1,4 +1,5 @@
 class Employer::DailyReportsController < ApplicationController
+  before_action :authenticate_employer!
 
   def index
     @daily_reports = DailyReport.page(params[:page]).per(31)

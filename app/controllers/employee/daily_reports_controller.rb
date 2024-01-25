@@ -1,4 +1,5 @@
 class Employee::DailyReportsController < ApplicationController
+  before_action :authenticate_employee!
 
   def create
     @daily_report = DailyReport.new(daily_report_params)

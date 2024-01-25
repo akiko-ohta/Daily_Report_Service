@@ -1,4 +1,6 @@
 class Employer::DepartmentsController < ApplicationController
+  before_action :authenticate_employer!
+
   def create
     department = Department.new(department_params)
     if department.save
