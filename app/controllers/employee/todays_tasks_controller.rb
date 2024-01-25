@@ -4,6 +4,7 @@ class Employee::TodaysTasksController < ApplicationController
   def index
     @daily_report = DailyReport.new
     @todays_task = TodaysTask.new
+    @todays_date = current_employee.department.todays_tasks.last
     @tasks = current_employee.department.tasks.where(is_active: true)
     if current_employee.department.todays_tasks.exists?
       @todays_tasks = current_employee.department.todays_tasks.includes(:task).order('tasks.execution_time ASC').all
@@ -13,7 +14,7 @@ class Employee::TodaysTasksController < ApplicationController
     last_handover_date = current_employee.department.handover.last&.created_at&.to_date
     # 所属部署で最後に作成した当日日報の日付と一致するhandoverがあるか確認
     if last_todays_task_date == last_handover_date
-      # 存在する場合はその情報を取得
+      # 一致する場合はその情報を取得
       @handover = Handover.last
     end
     @handover_blank = Handover.new

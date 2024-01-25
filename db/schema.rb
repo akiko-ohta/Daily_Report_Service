@@ -38,7 +38,7 @@ ActiveRecord::Schema.define(version: 2024_01_11_062221) do
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
     t.integer "department_id", null: false
-    t.integer "user_code", null: false
+    t.string "user_code", null: false
     t.string "last_name", null: false
     t.string "first_name", null: false
     t.string "last_name_kana", null: false

@@ -67,8 +67,10 @@ class Employee::RegistrationsController < Devise::RegistrationsController
   # end
 
   def sign_up(resource_name, resource)
-    if current_employer.present?
+    if resource.is_a?(Employer)
       sign_in(resource_name, resource)
+    elsif resource.is_a?(Employee)
+      sign_out(resource_name)
     end
   end
 

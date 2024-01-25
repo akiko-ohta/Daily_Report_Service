@@ -22,25 +22,17 @@ class Employee::DailyReportsController < ApplicationController
     # 現在の日報の作成日を取得
     creation_date = @daily_report.created_at.to_date
     # 日報と同じ作成日の引継ぎを取得
-    @handover = Handover.where("DATE(created_at) = ?", creation_date).first
+    @handover = current_employee.department.handover.where("DATE(created_at) = ?", creation_date).first
   end
 
   def search
     redirect_to daily_reports_path if params[:keyword].blank?
-    keywords = params[:keyword].split(/[[:blank:]]+/).select(&:present?)
-    negative_keywords, positive_keywords =
-    keywords.partition {|keyword| keyword.start_with?("-") }
+    keywords = params[:keyword].split(/[[:blank:]]+/)
     @handover = Handover.none
-    positive_keywords.each do |keyword|
-      @handover = @handover.or(Handover.where("handover LIKE ?", "%#{keyword}%"))
+    keywords.each do |keyword|
+      @handovers = current_employee.department.handover.where("handover LIKE ?", "%#{keyword}%")
     end
-    negative_keywords.each do |keyword|
-      @handover.where.not("handover LIKE ?", "%#{keyword.delete_prefix('-')}%")
-    end
-
-    @handovers = current_employee.department.handover.all
-    # 引継ぎと同じ作成日の日報を取得
-    @daily_reports = DailyReport.where("DATE(created_at) IN (?)", @handovers.pluck(:created_at).map(&:to_date))
+    @daily_reports = DailyReport.all
   end
 
   private

@@ -8,18 +8,16 @@
   <div class="row">
     <div class="col-5">
       <table class="table table-bordered">
-        <% if @handovers.present? %>
         <% @handovers.each do |handover| %>
           <tr>
             <td>
               <% daily_report = @daily_reports.find { |daily_report| daily_report.created_at.to_date == handover.created_at.to_date } %>
               <%= link_to daily_report_path(daily_report.id), class: 'text-dark btn-default' do %>
-                <%= handover.handover.truncate(100) %>
                 <%= handover.created_at.strftime('%Y/%m/%d') %>
+                <%= handover.handover.truncate(100) %>
               <% end %>
             </td>
           </tr>
-        <% end %>
         <% end %>
       </table>
     </div>

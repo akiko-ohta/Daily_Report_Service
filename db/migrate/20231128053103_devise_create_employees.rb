@@ -13,7 +13,7 @@ class DeviseCreateEmployees < ActiveRecord::Migration[6.1]
       ## Rememberable
       t.datetime :remember_created_at
       t.integer :department_id, null: false
-      t.integer :user_code, null: false
+      t.string :user_code, null: false
       t.string :last_name, null: false
       t.string :first_name, null: false
       t.string :last_name_kana, null: false

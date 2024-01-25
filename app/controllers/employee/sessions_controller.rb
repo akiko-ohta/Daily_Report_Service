@@ -3,7 +3,7 @@
 class Employee::SessionsController < Devise::SessionsController
   before_action :employee_state, only: [:create]
   def after_sign_in_path_for(resource)
-      daily_reports_path
+      todays_tasks_path
   end
 
   # GET /resource/sign_in

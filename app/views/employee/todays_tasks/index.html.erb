@@ -1,6 +1,10 @@
 <div class="container">
   <div class="row">
-    <h4>日報登録</h4>
+    <% if @todays_tasks.present? %>
+      <h4><%= @todays_date.created_at.strftime('%Y/%m/%d') %>日の日報</h4>
+    <% else %>
+      <h4>日報登録</h4>
+    <% end %>
   </div>
   <div class="row mb-3">
     <% if @todays_tasks.present? %>
@@ -35,7 +39,7 @@
             </td>
             <%= form_with model: todays_task do |f| %>
             <td>
-              <%= f.select :practitioner, options_from_collection_for_select(current_employee.department.employees.all, :id, :employee_display, { :selected => todays_task.practitioner.to_i }), { prompt: '選択してください' } %>
+              <%= f.select :practitioner, options_from_collection_for_select(current_employee.department.employees.all.where(is_active: "有効"), :id, :employee_display, { :selected => todays_task.practitioner.to_i }), { prompt: '選択してください' } %>
             </td>
             <td>
               <%= f.submit '変更', class: 'btn btn-outline-success' %>

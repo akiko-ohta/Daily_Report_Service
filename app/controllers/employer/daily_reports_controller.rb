@@ -11,7 +11,17 @@ class Employer::DailyReportsController < ApplicationController
     # 現在の日報の作成日を取得
     creation_date = @daily_report.created_at.to_date
     # 日報と同じ作成日の引継ぎを取得
-    @handover = Handover.where("DATE(created_at) = ?", creation_date).first
+    @handover = @daily_report.department.handover.where("DATE(created_at) = ?", creation_date).first
+  end
+
+  def search
+    redirect_to daily_reports_path if params[:keyword].blank?
+    keywords = params[:keyword].split(/[[:blank:]]+/)
+    @handover = Handover.none
+    keywords.each do |keyword|
+      @handovers = Handover.where("handover LIKE ?", "%#{keyword}%")
+    end
+    @daily_reports = DailyReport.all
   end
 
   private

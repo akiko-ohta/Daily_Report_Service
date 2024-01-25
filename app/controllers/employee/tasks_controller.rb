@@ -15,7 +15,7 @@ class Employee::TasksController < ApplicationController
   end
 
   def index
-    @tasks = Task.all.order(execution_time: :asc)
+    @tasks = current_employee.department.tasks.all.order(execution_time: :asc)
   end
 
   def edit

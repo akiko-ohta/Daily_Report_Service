@@ -8,6 +8,7 @@ Rails.application.routes.draw do
 
   namespace :employer do
     resources :daily_reports, only: [:index, :show]
+    get '/search' => "daily_reports#search"
   end
 
   scope module: :employee do
