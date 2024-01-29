@@ -27,7 +27,14 @@
 https://docs.google.com/spreadsheets/d/1WvFTd5NY1EWC7z0dTyO8IFY7xIiX6RMpGh5135rV-i4/edit?usp=sharing
 
 ## 設計書
-<!--テーマを設定・提出する時点では不要です-->
+- 画面遷移図
+https://drive.google.com/drive/folders/16zCeYLeueByvmQHBSMM3wPsbFkNrgcAE?usp=sharing
+- ER図
+https://drive.google.com/file/d/1wWrHDjy3KFCNKAD0Yu1cLkYmOpIco15s/view?usp=drive_link
+- テーブル定義書
+https://docs.google.com/spreadsheets/d/1HFKrfcVxoffQEY5aWeAXfYrLrLq-1N4pukQmrIYBDyA/edit?usp=sharing
+- テスト仕様書
+https://docs.google.com/spreadsheets/d/1yY5hpC7ONiaremf0iTH0XyAas0xxYA41uX2dQvOaC0w/edit?usp=sharing
 
 ## 開発環境
 - OS：Linux(CentOS)
@@ -35,8 +42,14 @@ https://docs.google.com/spreadsheets/d/1WvFTd5NY1EWC7z0dTyO8IFY7xIiX6RMpGh5135rV
 - フレームワーク：Ruby on Rails
 - JSライブラリ：jQuery
 - IDE：Cloud9
--
 
 
 ## 使用素材
-使用検討中
+- Bootstrap4
+https://v4.bootstrap-guide.com/getting-started/introduction
+- Devise
+https://github.com/heartcombo/devise#getting-started
+- kaminari
+https://github.com/kaminari/kaminari
+- enum_help
+https://github.com/zmbacker/enum_help
