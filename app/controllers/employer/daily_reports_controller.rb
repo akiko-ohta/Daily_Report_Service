@@ -15,7 +15,7 @@ class Employer::DailyReportsController < ApplicationController
   end
 
   def search
-    redirect_to daily_reports_path if params[:keyword].blank?
+    redirect_to employer_daily_reports_path if params[:keyword].blank?
     keywords = params[:keyword].split(/[[:blank:]]+/)
     @handover = Handover.none
     keywords.each do |keyword|
