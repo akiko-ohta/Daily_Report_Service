@@ -29,6 +29,8 @@ https://docs.google.com/spreadsheets/d/1WvFTd5NY1EWC7z0dTyO8IFY7xIiX6RMpGh5135rV
 ## 設計書
 - 画面遷移図
 https://drive.google.com/drive/folders/16zCeYLeueByvmQHBSMM3wPsbFkNrgcAE?usp=sharing
+- ワイヤーフレーム
+https://drive.google.com/drive/folders/1JPk2W4qNtX6rWHkeNft-sopC9cBuOup5?usp=sharing
 - ER図
 https://drive.google.com/file/d/1wWrHDjy3KFCNKAD0Yu1cLkYmOpIco15s/view?usp=drive_link
 - テーブル定義書

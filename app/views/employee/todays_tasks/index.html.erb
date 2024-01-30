@@ -15,7 +15,7 @@
     <% else %>
       <%= form_with(model: @todays_task, url: todays_tasks_path, method: :post) do |f| %>
         <%= f.hidden_field :department_id, value: current_employee.department.id %>
-        <%= f.submit '新規日報作成', class: 'btn btn-outline-success' %>
+        <%= f.submit '新規日報作成', class: 'btn btn-outline-primary' %>
       <% end %>
     <% end %>
   </div>

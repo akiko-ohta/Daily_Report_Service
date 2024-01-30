@@ -7,7 +7,7 @@
     <div class="form-group row">
       <label class="col-3 col-form-label">ユーザーコード</label>
       <div class="col-3">
-        <%= f.text_field :user_code, class: "form-control" %>
+        <%= f.text_field :user_code, placeholder: "000", class: "form-control" %>
       </div>
     </div>
     <div class="form-group row">
@@ -45,13 +45,13 @@
         <% end %>
       </label>
       <div class="col-3">
-        <%= f.password_field :password, autocomplete: "new-password", class: "form-control" %>
+        <%= f.password_field :password, placeholder: "000", autocomplete: "new-password", class: "form-control" %>
       </div>
     </div>
     <div class="form-group row">
-      <label class="col-3 col-form-label">パスワード</label>
+      <label class="col-3 col-form-label">パスワード（確認用）</label>
       <div class="col-3">
-        <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control" %>
+        <%= f.password_field :password_confirmation, placeholder: "000", autocomplete: "new-password", class: "form-control" %>
       </div>
     </div>
     <div class="form-group row">
