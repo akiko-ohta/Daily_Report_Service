@@ -32,7 +32,7 @@ https://drive.google.com/drive/folders/16zCeYLeueByvmQHBSMM3wPsbFkNrgcAE?usp=sha
 - ワイヤーフレーム
 https://drive.google.com/drive/folders/1JPk2W4qNtX6rWHkeNft-sopC9cBuOup5?usp=sharing
 - ER図
-https://drive.google.com/file/d/1wWrHDjy3KFCNKAD0Yu1cLkYmOpIco15s/view?usp=drive_link
+https://drive.google.com/file/d/1PHPXPSc3K2m6X1XenGWynSlc6xL2YGK3/view?usp=sharing
 - テーブル定義書
 https://docs.google.com/spreadsheets/d/1HFKrfcVxoffQEY5aWeAXfYrLrLq-1N4pukQmrIYBDyA/edit?usp=sharing
 - テスト仕様書
