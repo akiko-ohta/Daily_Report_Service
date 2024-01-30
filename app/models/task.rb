@@ -11,4 +11,5 @@ class Task < ApplicationRecord
   def task_execution_time
     task&.execution_time
   end
+
 end

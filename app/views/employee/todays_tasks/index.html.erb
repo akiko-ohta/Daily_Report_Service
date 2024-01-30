@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row mb-3">
     <% if @todays_tasks.present? %>
-      <h4><%= @todays_date.created_at.strftime('%Y/%m/%d') %>日の日報</h4>
+      <h4><%= @todays_date.created_at.strftime('%Y/%m/%d') %>の日報</h4>
     <% else %>
       <h4>日報登録</h4>
     <% end %>
