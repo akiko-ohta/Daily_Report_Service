@@ -3,4 +3,5 @@ class DailyReport < ApplicationRecord
   has_many :daily_tasks, dependent: :destroy
 
   validates :department_id, presence: true
+
 end

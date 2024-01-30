@@ -13,16 +13,14 @@ class Employee::DailyReportsController < ApplicationController
   end
 
   def index
-    @daily_reports = current_employee.department.daily_report.all
+    @daily_reports = current_employee.department.daily_report.all.page(params[:page]).per(31).order(id: "DESC")
   end
 
   def show
     @daily_report = DailyReport.find(params[:id])
     @daily_tasks = @daily_report.daily_tasks.includes(:task).order('tasks.execution_time ASC').all
-    # 現在の日報の作成日を取得
-    creation_date = @daily_report.created_at.to_date
     # 日報と同じ作成日の引継ぎを取得
-    @handover = current_employee.department.handover.where("DATE(created_at) = ?", creation_date).first
+    @handover = @daily_report.department.handover.where("created_at >= ? AND created_at < ?", @daily_report.created_at.beginning_of_day, @daily_report.created_at.beginning_of_day.tomorrow).first
   end
 
   def search

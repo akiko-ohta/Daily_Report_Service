@@ -11,6 +11,7 @@
         <thead class="thead-light">
         <th>日報作成日</th>
         <th>部署</th>
+        <th></th>
       </thead>
         <% @daily_reports.each do |daily_report| %>
         <tr>
@@ -21,6 +22,11 @@
           </td>
           <td>
             <%= daily_report.department.name %>
+          </td>
+          <td>
+            <%= link_to employer_daily_report_path(daily_report.id), method: :delete, "data-confirm" => "本当に削除しますか？", class: 'btn btn-outline-danger' do %>
+              <span>削除</span>
+            <% end %>
           </td>
         </tr>
         <% end %>

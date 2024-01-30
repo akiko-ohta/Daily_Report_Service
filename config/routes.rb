@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   end
 
   namespace :employer do
-    resources :daily_reports, only: [:index, :show]
+    resources :daily_reports, only: [:index, :show, :destroy]
     get '/search' => "daily_reports#search"
   end
 
