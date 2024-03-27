@@ -15,7 +15,7 @@ class Employee::TodaysTasksController < ApplicationController
     # 所属部署で最後に作成した当日日報の日付と一致するhandoverがあるか確認
     if last_todays_task_date == last_handover_date
       # 一致する場合はその情報を取得
-      @handover = Handover.last
+      @handover = current_employee.department.handover.last
     end
     @handover_blank = Handover.new
     @daily_report = DailyReport.new
