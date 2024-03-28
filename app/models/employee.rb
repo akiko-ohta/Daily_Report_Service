@@ -31,4 +31,8 @@ class Employee < ApplicationRecord
     last_name + ' ' + first_name
   end
 
+  def active_for_authentication?
+    super && self.is_active?
+  end
+
 end
